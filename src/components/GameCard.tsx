@@ -10,16 +10,16 @@ interface Props {
 
 export default function GameCard({ game }: Props) {
     return (
-        <Card rounded={10} overflow="hidden">
+        <Card minWidth="300px" rounded={10} overflow="hidden">
             <Image src={getOptimizedImage(game.background_image)} />
             <CardBody>
                 <Heading size="xl">{game.name}</Heading>
                 <HStack justifyContent="space-between">
-                    <PlatformIconsList
+                    {/* <PlatformIconsList
                         platforms={game.parent_platforms.map(
                             ({ platforms }) => platforms
                         )}
-                    />
+                    /> */}
                     <CriticScore score={game.metacritic} />
                 </HStack>
             </CardBody>
