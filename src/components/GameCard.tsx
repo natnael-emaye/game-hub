@@ -15,11 +15,11 @@ export default function GameCard({ game }: Props) {
             <CardBody>
                 <Heading size="xl">{game.name}</Heading>
                 <HStack justifyContent="space-between">
-                    <PlatformIconsList
+                    {/* <PlatformIconsList
                         platforms={game.parent_platforms.map(
                             ({ platforms }) => platforms
                         )}
-                    />
+                    /> */}
                     <CriticScore score={game.metacritic} />
                 </HStack>
             </CardBody>

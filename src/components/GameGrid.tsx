@@ -23,13 +23,13 @@ export default function GamesGrid() {
             >
                 {isLoading &&
                     skeleton.map((index) => (
-                        <GameCardContainer>
-                            <GameCardSkeleton key={index} />
+                        <GameCardContainer key={index}>
+                            <GameCardSkeleton  />
                         </GameCardContainer>
                     ))}
                 {games.map((game) => (
-                    <GameCardContainer>
-                        <GameCard game={game} key={game.id} />
+                    <GameCardContainer key={game.id}>
+                        <GameCard game={game}  />
                     </GameCardContainer>
                 ))}
             </SimpleGrid>

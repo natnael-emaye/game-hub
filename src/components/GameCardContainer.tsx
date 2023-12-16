@@ -7,7 +7,7 @@ interface Props {
 
 export default function GameCardContainer({ children }: Props) {
     return (
-        <Card minWidth="300px" rounded={10} overflow="hidden">
+        <Card minWidth="100%" rounded={10} overflow="hidden">
             {children}
         </Card>
     );
