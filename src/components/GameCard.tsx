@@ -11,15 +11,15 @@ interface Props {
 export default function GameCard({ game }: Props) {
     return (
         <Card>
-            <Image src={getOptimizedImage(game.background_image)} />
+            <Image  src={getOptimizedImage(game.background_image)} />
             <CardBody>
-                <Heading size="xl">{game.name}</Heading>
+                <Heading size="md" >{game.name}</Heading>
                 <HStack justifyContent="space-between">
-                    {/* <PlatformIconsList
+                    <PlatformIconsList
                         platforms={game.parent_platforms.map(
-                            ({ platforms }) => platforms
+                            ({ platform }) => platform
                         )}
-                    /> */}
+                    />
                     <CriticScore score={game.metacritic} />
                 </HStack>
             </CardBody>
