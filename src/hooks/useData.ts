@@ -22,13 +22,13 @@ export default function useData<T>(endpoint:string) {
             })
             .then((res) => {
                 setData(res.data.results);
-                setLoading(true);
+                setLoading(false);
             })
 
             .catch((error: AxiosError) => {
                 if (error instanceof CanceledError) return;
                 setError(error.message);
-                setLoading(true);
+                setLoading(false);
             });
         // return () => controller.abort();
     }, []);
