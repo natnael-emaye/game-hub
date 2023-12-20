@@ -1,16 +1,23 @@
-import { SimpleGrid, Text } from "@chakra-ui/react";
+import { Heading, SimpleGrid } from "@chakra-ui/react";
 import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
+import { Genre } from "../hooks/useGenre";
 
-export default function GamesGrid() {
-    const { data: games, error, isLoading } = useGames();
+interface Prop {
+    selectedGenre: Genre | null;
+}
+
+export default function GamesGrid({ selectedGenre }: Prop) {
+    const { data: games, error, isLoading } = useGames(selectedGenre);
     const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
     return (
         <>
-            {error && <Text>{error}</Text>}
+            {error && <Heading>{error}</Heading>}
+            <Heading marginY={2} size="3xl" fontWeight="700">
+                {!error?selectedGenre?selectedGenre.name:"New and trading":""}
+            </Heading>
             <SimpleGrid
                 columns={{
                     sm: 1,
