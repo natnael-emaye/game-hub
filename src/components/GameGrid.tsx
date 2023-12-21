@@ -4,6 +4,7 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import { Genre } from "../hooks/useGenre";
+import PlatformSelector from "./PlatformSelector";
 
 interface Prop {
     selectedGenre: Genre | null;
@@ -16,8 +17,13 @@ export default function GamesGrid({ selectedGenre }: Prop) {
         <>
             {error && <Heading>{error}</Heading>}
             <Heading marginY={2} size="3xl" fontWeight="700">
-                {!error?selectedGenre?selectedGenre.name:"New and trading":""}
+                {!error
+                    ? selectedGenre
+                        ? selectedGenre.name
+                        : "New and trading"
+                    : ""}
             </Heading>
+            <PlatformSelector />
             <SimpleGrid
                 columns={{
                     sm: 1,
