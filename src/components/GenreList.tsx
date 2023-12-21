@@ -8,8 +8,13 @@ import {
 } from "@chakra-ui/react";
 import useGenre, { Genre } from "../hooks/useGenre";
 import getOptimizedImage from "../utils/image-url";
-// lesson 97 genres skeleton
-function GenreList({ setSelectedGenre }: { setSelectedGenre: (genre:Genre) => void }) {
+
+interface Props {
+    selectedGenre: Genre | null;
+    setSelectedGenre: (genre: Genre) => void;
+}
+
+function GenreList({ selectedGenre, setSelectedGenre }: Props) {
     const { data: genres, error, isLoading } = useGenre();
     if (error) return null;
     if (isLoading) return <Spinner />;
@@ -27,7 +32,11 @@ function GenreList({ setSelectedGenre }: { setSelectedGenre: (genre:Genre) => vo
                         <Button
                             onClick={() => setSelectedGenre(genre)}
                             variant="link"
-                            fontSize="lg"
+                            fontWeight={
+                                selectedGenre?.id == genre.id
+                                    ? "bold"
+                                    : "normal"
+                            }
                         >
                             {genre.name}
                         </Button>
