@@ -7,7 +7,7 @@ import { Genre } from "./hooks/useGenre";
 
 function App() {
     const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-
+    // TODO: wakatime
     return (
         <div className="">
             <Grid

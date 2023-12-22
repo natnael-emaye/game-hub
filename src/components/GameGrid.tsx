@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { Heading, SimpleGrid } from "@chakra-ui/react";
-import useGames from "../hooks/useGames";
+import useGames, { PlatformProps } from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
@@ -11,8 +12,12 @@ interface Prop {
 }
 
 export default function GamesGrid({ selectedGenre }: Prop) {
-    const { data: games, error, isLoading } = useGames(selectedGenre);
+    const [selectedPlatform, setSelectedPlatform] =
+        useState<PlatformProps | null>(null);
+
+    const { data: games, error, isLoading } = useGames(selectedGenre,selectedPlatform);
     const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
     return (
         <>
             {error && <Heading>{error}</Heading>}
@@ -23,7 +28,10 @@ export default function GamesGrid({ selectedGenre }: Prop) {
                         : "New and trading"
                     : ""}
             </Heading>
-            <PlatformSelector />
+            <PlatformSelector
+                selectedPlatform={selectedPlatform}
+                onSelectedPlatform={(platform) => setSelectedPlatform(platform)}
+            />
             <SimpleGrid
                 columns={{
                     sm: 1,
