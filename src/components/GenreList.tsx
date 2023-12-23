@@ -11,10 +11,10 @@ import getOptimizedImage from "../utils/image-url";
 
 interface Props {
     selectedGenre: Genre | null;
-    setSelectedGenre: (genre: Genre) => void;
+    onSelectedGenre: (genre: Genre) => void;
 }
 
-function GenreList({ selectedGenre, setSelectedGenre }: Props) {
+function GenreList({ selectedGenre, onSelectedGenre }: Props) {
     const { data: genres, error, isLoading } = useGenre();
     if (error) return null;
     if (isLoading) return <Spinner />;
@@ -30,7 +30,7 @@ function GenreList({ selectedGenre, setSelectedGenre }: Props) {
                             src={getOptimizedImage(genre.image_background)}
                         />
                         <Button
-                            onClick={() => setSelectedGenre(genre)}
+                            onClick={() => onSelectedGenre(genre)}
                             variant="link"
                             fontWeight={
                                 selectedGenre?.id == genre.id

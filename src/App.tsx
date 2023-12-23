@@ -1,18 +1,23 @@
 import { Grid, GridItem, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
-import GamesGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { useState } from "react";
-import { Genre } from "./hooks/useGenre";
 import PlatformSelector from "./components/PlatformSelector";
+import { Genre } from "./hooks/useGenre";
 import { PlatformProps } from "./hooks/useGames";
+import GameGrid from "./components/GameGrid";
 
+export interface GameQueryProps {
+    genre: Genre | null;
+    platform: PlatformProps | null;
+}
+
+// TODO: wakatime
 function App() {
-    const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-    const [selectedPlatform, setSelectedPlatform] =
-        useState<PlatformProps | null>(null);
+    const [gameQuery, setGameQuery] = useState<GameQueryProps>(
+        {} as GameQueryProps
+    );
 
-    // TODO: wakatime
     return (
         <div className="">
             <Grid
@@ -32,19 +37,23 @@ function App() {
                 <Show above="lg">
                     <GridItem paddingX={5} area={"aside"}>
                         <GenreList
-                            selectedGenre={selectedGenre}
-                            setSelectedGenre={setSelectedGenre}
+                            selectedGenre={gameQuery.genre}
+                            onSelectedGenre={(genre) =>
+                                setGameQuery({ ...gameQuery, genre })
+                            }
                         />
                     </GridItem>
                 </Show>
                 <GridItem pl="2" area={"main"} overflowX="hidden">
                     <PlatformSelector
-                        selectedPlatform={selectedPlatform}
+                        selectedPlatform={gameQuery.platform}
                         onSelectedPlatform={(platform) =>
-                            setSelectedPlatform(platform)
+                            setGameQuery({ ...gameQuery, platform })
                         }
                     />
-                    <GamesGrid selectedPlatform={selectedPlatform} selectedGenre={selectedGenre} />
+                    <GameGrid
+                        gameQuery={gameQuery}
+                    />
                 </GridItem>
             </Grid>
         </div>
