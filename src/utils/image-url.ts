@@ -1,4 +1,4 @@
-import noImage from "../assets/no-image.webp"
+import noImage from "../assets/no-image.jpg"
 
 export default function getOptimizedImage(image: string) {
     if(!image) return noImage
