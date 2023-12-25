@@ -14,7 +14,6 @@ export interface GameQueryProps {
     ordering: string;
 }
 
-// TODO: wakatime
 function App() {
     const [gameQuery, setGameQuery] = useState<GameQueryProps>(
         {} as GameQueryProps
